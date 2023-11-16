@@ -39,6 +39,8 @@ stages:
           - script: ls -lR /home/vsts/work/1/s/
             displayName: 'List files in myenv directory'
           - task: KubernetesManifest@1
+          - script: cp myenv/deployment.yaml $(Build.ArtifactStagingDirectory)/
+            displayName: 'Copy deployment.yaml to the Artifact Staging Directory'
             inputs:
               action: 'deploy'
               connectionType: 'kubernetesServiceConnection'

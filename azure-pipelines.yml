@@ -26,7 +26,8 @@ stages:
         repository: '7797/Hello-DashApp-Docker-Image'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
-        tags: '$(tag)'
+        tags: 
+        - '$(tag)'
 
 - stage: Deploy
   jobs:
@@ -37,14 +38,14 @@ stages:
         deploy:
           steps:
           - script: ls -lR /home/vsts/work/1/s/
-            displayName: 'List files in myenv directory'
-          - task: KubernetesManifest@1
-          - script: cp myenv/deployment.yaml $(Build.ArtifactStagingDirectory)/
+            displayName: 'List files in the working directory'
+          - script: cp /home/vsts/work/1/s/myenv/deployment.yaml $(Build.ArtifactStagingDirectory)/
             displayName: 'Copy deployment.yaml to the Artifact Staging Directory'
-          inputs:
+          - task: KubernetesManifest@0
+            inputs:
               action: 'deploy'
               connectionType: 'kubernetesServiceConnection'
               kubernetesServiceConnection: 'Azure-kubernetes-connection'
               namespace: 'default'
-              manifests: 'myenv/deployment.yaml'
-          
+              manifests: '$(Build.ArtifactStagingDirectory)/deployment.yaml'
+

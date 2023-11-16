@@ -41,7 +41,7 @@ stages:
           - task: KubernetesManifest@1
           - script: cp myenv/deployment.yaml $(Build.ArtifactStagingDirectory)/
             displayName: 'Copy deployment.yaml to the Artifact Staging Directory'
-            inputs:
+          inputs:
               action: 'deploy'
               connectionType: 'kubernetesServiceConnection'
               kubernetesServiceConnection: 'Azure-kubernetes-connection'

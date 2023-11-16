@@ -43,3 +43,6 @@ stages:
               kubernetesServiceConnection: 'Azure-kubernetes-connection'
               namespace: 'default'
               manifests: 'myenv/deployment.yaml'
+          - script: ls -lR $(System.DefaultWorkingDirectory)/myenv
+            displayName: 'List files in myenv directory'
+

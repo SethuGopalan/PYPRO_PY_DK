@@ -36,10 +36,10 @@ stages:
       runOnce:
         deploy:
           steps:
-          
+          - checkout: self
           - script:  cp $(System.DefaultWorkingDirectory)/myenv/deployment.yaml /home/vsts/work/1/s/
             displayName: 'Copy deployment.yaml to the Artifact Staging Directory'
-          - script: ls -lR /home/vsts/work/1/s/
+          - script: ls -lR $(System.DefaultWorkingDirectory)/myenv
             displayName: 'List files in the working directory'
           - task: KubernetesManifest@0
             inputs:

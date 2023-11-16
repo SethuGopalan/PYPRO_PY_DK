@@ -36,8 +36,8 @@ stages:
       runOnce:
         deploy:
           steps:
-          - script: cd ~/myenv
-          - script: cp ~/deployment.yaml /home/vsts/work/1/s/
+          
+          - script:  cp $(System.DefaultWorkingDirectory)/myenv/deployment.yaml /home/vsts/work/1/s/
             displayName: 'Copy deployment.yaml to the Artifact Staging Directory'
           - script: ls -lR /home/vsts/work/1/s/
             displayName: 'List files in the working directory'
@@ -47,5 +47,5 @@ stages:
               connectionType: 'kubernetesServiceConnection'
               kubernetesServiceConnection: 'Azure-kubernetes-connection'
               namespace: 'default'
-              manifests: 'myenv/deployment.yaml'
+              manifests: '/home/vsts/work/1/s/deployment.yaml'
 

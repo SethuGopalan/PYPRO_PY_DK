@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-dash-app
+spec:
+  replicas: 2 # Adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      app: python-dash
+  template:
+    metadata:
+      labels:
+        app: python-dash
+    spec:
+      containers:
+        - name: python-dash-container
+          image: 7797/Hello-DashApp-Docker-Image:tag
+          ports:
+            - containerPort: 80

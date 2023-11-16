@@ -26,8 +26,7 @@ stages:
         repository: '7797/Hello-DashApp-Docker-Image'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
-        tags: 
-        - '$(tag)'
+        tags: '$(tag)'
 
 - stage: Deploy
   jobs:

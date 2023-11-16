@@ -36,7 +36,7 @@ stages:
       runOnce:
         deploy:
           steps:
-          
+          - script: cd ~/myenv
           - script: cp ~/deployment.yaml /home/vsts/work/1/s/
             displayName: 'Copy deployment.yaml to the Artifact Staging Directory'
           - script: ls -lR /home/vsts/work/1/s/

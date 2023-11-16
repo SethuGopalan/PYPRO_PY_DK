@@ -36,7 +36,7 @@ stages:
       runOnce:
         deploy:
           steps:
-          - script: ls -lR $(System.DefaultWorkingDirectory)/myenv
+          - script: ls -lR /home/vsts/work/1/s/
             displayName: 'List files in myenv directory'
           - task: KubernetesManifest@1
             inputs:
@@ -45,6 +45,4 @@ stages:
               kubernetesServiceConnection: 'Azure-kubernetes-connection'
               namespace: 'default'
               manifests: 'myenv/deployment.yaml'
-          - script: ls -lR $(System.DefaultWorkingDirectory)/myenv
-            displayName: 'List files in myenv directory'
-
+          

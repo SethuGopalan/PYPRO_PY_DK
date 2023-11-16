@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: python-dash-container
-          image: 7797/Hello-DashApp-Docker-Image:tag
+          image: 7797/Hello-DashApp-Docker-Image:latest
           ports:
             - containerPort: 80
